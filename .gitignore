@@ -1,1 +1,29 @@
-# Python  __pycache__\  *.pyc  *.pyo  *.pyd  .Python  env\  venv\  ENV\  .venv\  pyvenv.cfg  # IDE  .vscode\  .idea\  *.swp  *.swo  # Environment  .env  .env.local  # Media files  *.mp3  *.mp4  *.wav  data\  temp\  # OS  .DS_Store 
+# Python 
+__pycache__\ 
+*.pyc 
+*.pyo 
+*.pyd 
+env\ 
+venv\ 
+.venv\ 
+pyvenv.cfg 
+ 
+# IDE 
+.vscode\ 
+.idea\ 
+*.swp 
+*.swo 
+ 
+# Environment 
+.env 
+.env.local 
+ 
+# Media files 
+*.mp3 
+*.mp4 
+*.wav 
+data\ 
+temp\ 
+ 
+# OS 
+.DS_Store
