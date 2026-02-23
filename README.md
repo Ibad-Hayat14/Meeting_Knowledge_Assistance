@@ -46,4 +46,28 @@ Transform meeting videos into **searchable, timestamped knowledge bases** with s
 
 ---
 
+```
 ## 📁 Project Structure
+
+Meeting_Knowledge_Assistant/
+├── src/
+│ ├── audio/
+│ │ └── extractor.py # FFmpeg-based audio extraction logic
+│ └── transcription/
+│ ├── youtube_downloader.py # YouTube audio downloader (pytube – deprecated)
+│ └── whisper_transcriber.py # Groq Whisper API wrapper
+│
+├── tests/
+│ └── unit/
+│ └── test_extractor.py # Unit tests for audio extraction
+│
+├── scripts/
+│ └── test_transcription_local.py # Local transcription test script
+│
+├── .env.example # Environment variable template
+├── .gitignore # Git ignore rules
+├── requirements.txt # Python dependencies
+├── README.md # Project documentation
+└── test_audio.wav # Sample audio file (not committed)
+
+```
