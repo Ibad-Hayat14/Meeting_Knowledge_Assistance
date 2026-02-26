@@ -21,9 +21,9 @@ Transform meeting videos into **searchable, timestamped knowledge bases** with s
 |---------|--------|------------|
 | **Week 1: Audio Extraction** | ✅ COMPLETE | FFmpeg-based audio extractor with 100% unit test coverage |
 | **Week 2: Transcription** | ✅ COMPLETE | Groq Whisper API integration for local audio transcription |
-| **Week 3: Speaker Diarization** | 🚧 PLANNED | Open-source speaker separation + yt-dlp YouTube downloader |
-| **Week 4: Vector DB** | 🚧 PLANNED | ChromaDB for semantic search |
-| **Week 5: Q&A Engine** | 🚧 PLANNED | RAG-based question answering with Llama 3 |
+| **Week 3: Speaker Diarization** | ✅ COMPLETE | Open-source speaker separation + yt-dlp YouTube downloader |
+| **Week 4: Vector DB** | ✅ COMPLETE | ChromaDB for semantic search |
+| **Week 5: Q&A Engine** | ✅ COMPLETE | RAG-based question answering with Llama 3 |
 | **Week 6: UI & API** | 🚧 PLANNED | FastAPI + Streamlit interface |
 
 ---
