@@ -1,3 +1,13 @@
 pytest>=7.0.0
 groq>=0.9.0
 python-dotenv>=1.0.0
+chromadb>=0.5.0
+sentence-transformers>=3.0.0
+
+# Week 6: API + UI
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+python-multipart>=0.0.9
+streamlit>=1.35.0
+requests>=2.31.0
+httpx>=0.27.0
