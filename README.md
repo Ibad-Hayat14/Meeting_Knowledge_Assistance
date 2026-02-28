@@ -46,28 +46,50 @@ Transform meeting videos into **searchable, timestamped knowledge bases** with s
 
 ---
 
-```
 ## 📁 Project Structure
 
-Meeting_Knowledge_Assistant/
+```
+Meeting_Knowledge_Assistance/
 ├── src/
-│ ├── audio/
-│ │ └── extractor.py # FFmpeg-based audio extraction logic
-│ └── transcription/
-│ ├── youtube_downloader.py # YouTube audio downloader (pytube – deprecated)
-│ └── whisper_transcriber.py # Groq Whisper API wrapper
+│   ├── audio/
+│   │   └── extractor.py              # FFmpeg-based audio extraction logic
+│   ├── transcription/
+│   │   ├── __init__.py
+│   │   └── whisper_transcriber.py    # Groq Whisper API wrapper
+│   ├── vector_db/
+│   │   ├── __init__.py
+│   │   ├── chunker.py                # Text chunking for embeddings
+│   │   └── store.py                  # ChromaDB vector store interface
+│   ├── qa/
+│   │   ├── __init__.py
+│   │   └── engine.py                 # RAG-based Q&A engine (Llama 3 via Groq)
+│   ├── summary/
+│   │   ├── __init__.py
+│   │   └── summarizer.py             # Meeting summarization module
+│   ├── api/
+│   │   ├── __init__.py
+│   │   └── main.py                   # FastAPI application entry point
+│   ├── ui/
+│   │   ├── __init__.py
+│   │   └── app.py                    # Streamlit UI
+│   └── pipeline.py                   # End-to-end orchestration pipeline
 │
 ├── tests/
-│ └── unit/
-│ └── test_extractor.py # Unit tests for audio extraction
+│   ├── unit/
+│   │   ├── test_extractor.py         # Audio extractor unit tests
+│   │   ├── test_transcriber.py       # Transcription unit tests
+│   │   ├── test_vector_store.py      # Vector DB unit tests
+│   │   ├── test_qa_engine.py         # Q&A engine unit tests
+│   │   └── test_summarizer.py        # Summarizer unit tests
+│   └── integration/
+│       ├── __init__.py
+│       └── test_api.py               # API integration tests
 │
-├── scripts/
-│ └── test_transcription_local.py # Local transcription test script
-│
-├── .env.example # Environment variable template
-├── .gitignore # Git ignore rules
-├── requirements.txt # Python dependencies
-├── README.md # Project documentation
-└── test_audio.wav # Sample audio file (not committed)
-
+├── chroma_db/                        # Persisted ChromaDB vector store
+├── docker-compose.yml                # Docker services config
+├── pyproject.toml                    # Project metadata & tool config
+├── .env.example                      # Environment variable template
+├── .gitignore                        # Git ignore rules
+├── requirements.txt                  # Python dependencies
+└── README.md                         # Project documentation
 ```
