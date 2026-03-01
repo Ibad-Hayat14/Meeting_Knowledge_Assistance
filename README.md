@@ -24,7 +24,7 @@ Transform meeting videos into **searchable, timestamped knowledge bases** with s
 | **Week 3: Speaker Diarization** | ✅ COMPLETE | Open-source speaker separation + yt-dlp YouTube downloader |
 | **Week 4: Vector DB** | ✅ COMPLETE | ChromaDB for semantic search |
 | **Week 5: Q&A Engine** | ✅ COMPLETE | RAG-based question answering with Llama 3 |
-| **Week 6: UI & API** | 🚧 PLANNED | FastAPI + Streamlit interface |
+| **Week 6: UI & API** | ✅ COMPLETE | FastAPI + Streamlit interface |
 
 ---
 
@@ -40,13 +40,12 @@ Transform meeting videos into **searchable, timestamped knowledge bases** with s
 ###  Transcription
 - Groq Whisper Large V3 API integration
 - Word-level timestamp preservation
-- Local audio file support (YouTube integration pending)
-- Cost: `$0.03/hour` of audio  
+- Local audio file support (YouTube integration pending) 
 - **Test Coverage:** Local transcription verified
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Meeting_Knowledge_Assistance/
