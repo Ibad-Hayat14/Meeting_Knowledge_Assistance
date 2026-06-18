@@ -14,12 +14,16 @@ import requests
 import streamlit as st
 from datetime import date
 
-# ---------------------------------------------------------------------------
-# Config
-# ---------------------------------------------------------------------------
+# Helper to read Streamlit secrets safely without throwing error if secrets.toml is missing
+def get_secret(key, default=None):
+    try:
+        val = st.secrets.get(key)
+        return val if val is not None else default
+    except Exception:
+        return default
 
-API_BASE = st.secrets.get("API_BASE_URL") or "http://localhost:8000"
-API_TOKEN = st.secrets.get("API_APP_TOKEN") or os.getenv("API_APP_TOKEN")
+API_BASE = get_secret("API_BASE_URL", "http://localhost:8000")
+API_TOKEN = get_secret("API_APP_TOKEN") or os.getenv("API_APP_TOKEN")
 
 st.set_page_config(
     page_title="Meeting Knowledge Assistant",
@@ -230,7 +234,7 @@ def check_password():
     """Returns True if the user had the correct password."""
     def password_entered():
         """Checks whether a password entered by the user is correct."""
-        expected_pass = st.secrets.get("APP_PASSWORD") or "resume2026"
+        expected_pass = get_secret("APP_PASSWORD", "resume2026")
         if st.session_state["password"] == expected_pass:
             st.session_state["password_correct"] = True
             del st.session_state["password"]  # don't store password
