@@ -20,7 +20,7 @@ import uuid
 from datetime import date
 from typing import List, Optional
 
-from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, UploadFile, Depends, Header
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
@@ -46,12 +46,23 @@ app = FastAPI(
     version="0.6.0",
 )
 
+allowed_origins_str = os.getenv("ALLOWED_ORIGINS", "*")
+allowed_origins = [origin.strip() for origin in allowed_origins_str.split(",") if origin.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+async def verify_token(x_app_token: Optional[str] = Header(None)):
+    expected_token = os.getenv("APP_TOKEN")
+    if not expected_token:
+        return
+    if x_app_token != expected_token:
+        raise HTTPException(status_code=403, detail="Forbidden: Invalid or missing X-App-Token")
 
 # ---------------------------------------------------------------------------
 # Singleton services (initialised once at startup)
@@ -128,6 +139,7 @@ def root():
 @app.post(
     "/meetings/process",
     response_model=ProcessResponse,
+    dependencies=[Depends(verify_token)],
     tags=["Meetings"],
     summary="Upload and process a meeting recording",
 )
@@ -178,6 +190,7 @@ async def upload_and_process_meeting(
 @app.get(
     "/meetings",
     response_model=List[MeetingOverview],
+    dependencies=[Depends(verify_token)],
     tags=["Meetings"],
     summary="List all indexed meetings",
 )
@@ -188,6 +201,7 @@ def list_meetings():
 
 @app.delete(
     "/meetings/{meeting_id}",
+    dependencies=[Depends(verify_token)],
     tags=["Meetings"],
     summary="Delete a meeting from the store",
 )
@@ -203,6 +217,7 @@ def delete_meeting(meeting_id: str):
 @app.post(
     "/meetings/{meeting_id}/ask",
     response_model=AnswerResponse,
+    dependencies=[Depends(verify_token)],
     tags=["Q&A"],
     summary="Ask a question scoped to one meeting",
 )
@@ -224,6 +239,7 @@ def ask_meeting(meeting_id: str, body: QuestionRequest):
 @app.post(
     "/ask",
     response_model=AnswerResponse,
+    dependencies=[Depends(verify_token)],
     tags=["Q&A"],
     summary="Ask a question across all meetings",
 )

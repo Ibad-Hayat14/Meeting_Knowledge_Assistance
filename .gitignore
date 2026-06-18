@@ -26,6 +26,7 @@ pyvenv.cfg
 *.wav
 data/
 temp/
+chroma_db/
 
 # OS
 .DS_Store
